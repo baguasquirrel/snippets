@@ -1,4 +1,21 @@
+-- | Catenary
+-- The shape of a suspension bridge cable is given by the function f(x) = cosh(x).
+-- This shape is called a catenary in the civil engineering jargon for this kind
+-- of work.
+--
+-- Supposing that we want to get the length of a catenary cable, given the width
+-- of the center span, from the edge of one tower to the other, and we know the
+-- catenary shape constant `a`, we can do a line integral of cosh(x), which
+-- produces a result that is not linearly separable, as far as I know. But for
+-- engineering purposes, it doesn't much matter. We probably don't care about
+-- precision beyond a few decimal points, for any given practical application
+-- and it is easy to use a fairly generalized secant method approximation to get
+-- a close-enough solution.
+
 import Data.Ord
+
+catenary :: Float -> Float -> Float
+catenary a x = a * cosh(x / a)
 
 catenary_length :: Float -> Float -> Float
 catenary_length a width = 2 * a * (sinh (width / (2 * a)))
@@ -59,7 +76,6 @@ points_on_catenary a num_points width =
   let step = width / (fromIntegral (num_points - 1))
       start = -width / 2
       indices = [0..(num_points-1)]
-      catenary a x = a * cosh(x / a)
       x_coords = map (\i -> start + (fromIntegral i) * step) indices
       y_coords' = map (catenary a) x_coords
       min_point = catenary a 0
