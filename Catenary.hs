@@ -6,11 +6,11 @@
 -- Supposing that we want to get the length of a catenary cable, given the width
 -- of the center span, from the edge of one tower to the other, and we know the
 -- catenary shape constant `a`, we can do a line integral of cosh(x), which
--- produces a result that is not linearly separable, as far as I know. But for
--- engineering purposes, it doesn't much matter. We probably don't care about
--- precision beyond a few decimal points, for any given practical application
--- and it is easy to use a fairly generalized secant method approximation to get
--- a close-enough solution.
+-- produces a result that is not linearly separable, at least to my limited 
+-- abilities. But for engineering purposes, it doesn't much matter. We generally
+-- don't care about precision beyond a few decimal points for most practical
+-- applications and it is easy to use a fairly generalized secant method 
+-- approximation to get a close-enough solution.
 
 import Data.Ord
 
